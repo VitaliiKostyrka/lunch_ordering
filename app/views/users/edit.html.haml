@@ -1,0 +1,7 @@
+- if @error
+  %p.alert.alert-danger= @error
+%h2 Edit User
+= simple_form_for(:user, url: user_path(@user), method: :patch) do |f|
+  = f.input :name, label: 'Username', value: @user.name
+  = f.input :email, placeholder: 'abc@domain.com', value: @user.email
+  = f.button :submit, class: 'btn-success'
