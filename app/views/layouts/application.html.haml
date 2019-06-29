@@ -3,11 +3,24 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title LunchOrdering
+    %link{href: "https://unpkg.com/@fullcalendar/core@4.2.0/main.css", rel: 'stylesheet'}
+    %link{href: "https://unpkg.com/@fullcalendar/daygrid@4.2.0/main.css", rel: 'stylesheet'}
+    %script{src: "https://code.jquery.com/jquery-3.4.1.js"}
+    %script{src: "https://unpkg.com/@fullcalendar/core@4.2.0/main.min.js"}
+    %script{src: "https://unpkg.com/@fullcalendar/interaction@4.2.0/main.min.js"}
+    %script{src: "https://unpkg.com/@fullcalendar/daygrid@4.2.0/main.min.js"}
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
   %body
+    - if user_signed_in?
+      %nav.navbar.navbar-light.bg-light
+        %form.form-inline
+          %a.navbar-brand{href: root_path} Lunch Ordering
+          = link_to('Edit', edit_user_path(current_user), class: "btn btn-outline-success")
+          = link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary")
     - if notice
       %p.alert.alert-success= notice
     - if alert

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @instance_var = 2
-    @user = current_user
+    @data = current_user.dashboard_data_for_this_date(params[:date] || Time.now.to_s)
   end
 
   def update

@@ -1,6 +1,9 @@
-- if user_signed_in?
-  = link_to('Logout', destroy_user_session_path, method: :delete)
-  = link_to('Edit', edit_user_path(@user))
 - if @success_message
   %p.alert.alert-success= @success_message
-%p.text-danger dashboard #{@instance_var}
+%h2 Dashboard #{@data[:date]}
+.row
+  .col-9
+    #calendar
+  .col-3
+    = render 'order'
+    = render 'menu'
