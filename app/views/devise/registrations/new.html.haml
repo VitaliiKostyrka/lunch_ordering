@@ -1,5 +1,5 @@
 %h2 Sign up
-= simple_form_for(:user, :url => user_session_path) do |f|
+= simple_form_for(:user, :url => user_registration_path) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
     = f.label :name
@@ -8,18 +8,18 @@
   .field
     = f.label :email
     %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+    = f.email_field :email, autofocus: true
   .field
     = f.label :password
     - if @minimum_password_length
       %em
         (#{@minimum_password_length} characters minimum)
     %br/
-    = f.password_field :password, autocomplete: "new-password"
+    = f.password_field :password
   .field
     = f.label :password_confirmation
     %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
+    = f.password_field :password_confirmation
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
