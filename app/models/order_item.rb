@@ -1,7 +1,9 @@
 class OrderItem < ApplicationRecord
   belongs_to :user
   belongs_to :menu_item
-  scope :user_and_date, -> (user, date) {OrderItem.where(user: user).includes(:menu_item).where("menu_items.date": date)}
+  scope :user_and_date, lambda { |user, date|
+    OrderItem.where(user: user).includes(:menu_item).where("menu_items.date": date)
+  }
 
   def self.order_data(user, date)
     courses = course_list(OrderItem.user_and_date(user, date))
@@ -12,17 +14,15 @@ class OrderItem < ApplicationRecord
   end
 
   def self.total_price_order_from_course_list(courses)
-    courses.map {|h| h[:price]}.sum
+    courses.map { |h| h[:price] }.sum
   end
 
   def self.course_list(orders)
     list = []
     orders.each do |order|
-      list.append({
-                    name: order.menu_item.course.name,
-                    price: order.menu_item.course.price,
-                    type: order.menu_item.course.kind
-                  })
+      list.append(name: order.menu_item.course.name,
+                  price: order.menu_item.course.price,
+                  type: order.menu_item.course.kind)
     end
     list
   end

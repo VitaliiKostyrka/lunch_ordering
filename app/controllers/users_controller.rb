@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to root_path, notice: "Your profile updated"
+      redirect_to root_path, notice: 'Your profile updated'
     else
       @error = @user.errors.full_messages
     end

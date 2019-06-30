@@ -5,6 +5,6 @@ RSpec.feature 'Dashboard', type: :feature, js: true do
 
   it 'open dashboard' do
     sign_in(user)
-    expect(page).to have_content("Dashboard")
+    expect(page).to have_content('Dashboard')
   end
 end
