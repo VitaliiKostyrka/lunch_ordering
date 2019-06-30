@@ -1,2 +1,17 @@
 .menu
   %h4 Menu
+  - if @data[:menu_info][:soups].any? || @data[:menu_info][:main_dishes].any? || @data[:menu_info][:drinks].any?
+    - if @data[:menu_info][:soups].any?
+      %ul.list-group.list-group-flush Soups
+      - for soup in @data[:menu_info][:soups]
+        %li.list-group-item #{soup[:name]} #{soup[:price]}
+    - if @data[:menu_info][:main_dishes].any?
+      %ul.list-group.list-group-flush Main dishes
+      - for md in @data[:menu_info][:main_dishes]
+        %li.list-group-item #{md[:name]} #{md[:price]}
+    - if @data[:menu_info][:drinks].any?
+      %ul.list-group.list-group-flush Drinks
+      - for drink in @data[:menu_info][:drinks]
+        %li.list-group-item #{drink[:name]} #{drink[:price]}
+  - else
+    Menu for this day is unavailable

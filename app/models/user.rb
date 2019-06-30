@@ -9,7 +9,8 @@ class User < ApplicationRecord
     date = Date.parse(datestr)
     {
       date: date,
-      order_info: OrderItem.order_data(self, date)
+      order_info: OrderItem.order_data(self, date),
+      menu_info: MenuItem.menu_data(date)
     }
   end
 end
