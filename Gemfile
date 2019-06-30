@@ -39,10 +39,16 @@ gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+group :test do
+  gem 'capybara', '3.25.0'
+  gem 'selenium-webdriver', '3.142.3'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry-rails'
-  gem 'rspec-rails'
+  gem 'factory_bot_rails', '5.0.2'
+  gem 'pry-rails', '0.3.9'
+  gem 'rspec-rails', '3.8.2'
 end
 
 group :development do
