@@ -1,2 +1,9 @@
 .order.h-25
-  %h4 Order
+  %h4 Order Info
+  - if @data[:order_info][:items].empty?
+    %p You haven't order at this day
+  - else
+    - for course in @data[:order_info][:items]
+      %p #{course[:type]} #{course[:name]} #{course[:price]}
+    %hr
+    %p total price: #{@data[:order_info][:total_price]}

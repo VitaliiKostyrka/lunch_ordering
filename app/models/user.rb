@@ -6,9 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def dashboard_data_for_this_date(datestr)
-    day = Date.parse(datestr)
+    date = Date.parse(datestr)
     {
-      date: day
+      date: date,
+      order_info: OrderItem.order_data(self, date)
     }
   end
 end
