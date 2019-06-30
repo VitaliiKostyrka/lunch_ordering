@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         selectable: true,
         dateClick: function(info) {
           window.location.href = "/?date="+ info.dateStr
-        }
+          }
     });
 
     calendar.render();
