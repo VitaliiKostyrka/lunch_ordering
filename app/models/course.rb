@@ -5,6 +5,7 @@ class Course < ApplicationRecord
 
   def as_json
     {
+      id: id,
       price: price,
       type: kind,
       name: name
