@@ -26,4 +26,32 @@ class OrderItem < ApplicationRecord
     end
     list
   end
+
+  def self.check_kind_of_order_item(params)
+    check_drink(params[:drink]) && check_main_dish(params[:main]) && check_soup(params[:soup])
+  end
+
+  def self.check_soup(soup_id)
+    if soup_id
+      MenuItem.find(soup_id).course.kind == 'soup'
+    else
+      true
+    end
+  end
+
+  def self.check_drink(drink_id)
+    if drink_id
+      MenuItem.find(drink_id).course.kind == 'drink'
+    else
+      true
+    end
+  end
+
+  def self.check_main_dish(main_dish_id)
+    if main_dish_id
+      MenuItem.find(main_dish_id).course.kind == 'main_dish'
+    else
+      true
+    end
+  end
 end

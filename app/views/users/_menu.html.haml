@@ -2,19 +2,47 @@
   %h4 Menu
   - if @data[:menu_info][:soups].any? || @data[:menu_info][:main_dishes].any? || @data[:menu_info][:drinks].any?
     - if @data[:menu_info][:soups].any?
-      %ul.list-group.list-group-flush Soups
-      - for soup in @data[:menu_info][:soups]
-        %li.list-group-item #{soup[:name]} #{soup[:price]}
-        %input{:type=>"checkbox"}
-    - if @data[:menu_info][:main_dishes].any?
-      %ul.list-group.list-group-flush Main dishes
-      - for md in @data[:menu_info][:main_dishes]
-        %li.list-group-item #{md[:name]} #{md[:price]}
-        %input{:type=>"checkbox"}
-    - if @data[:menu_info][:drinks].any?
-      %ul.list-group.list-group-flush Drinks
-      - for drink in @data[:menu_info][:drinks]
-        %li.list-group-item #{drink[:name]} #{drink[:price]} %input{type=>checkbox}
+      %h5 Soups
+      .row.soups
+        .col-4 Name
+        .col-4 Price
+        .col-4 Choose
+        - for soup in @data[:menu_info][:soups]
+          .col-4
+            =soup[:name]
+          .col-4
+            =soup[:price]
+          .col-4
+            %input{:type=>"radio", :name=>"soup", :value=>"#{soup[:id]}"}
 
+    - if @data[:menu_info][:main_dishes].any?
+      %h5 Main dishes
+      .row.main-dishes
+        .col-4 Name
+        .col-4 Price
+        .col-4 Choose
+        - for md in @data[:menu_info][:main_dishes]
+          .col-4
+            =md[:name]
+          .col-4
+            =md[:price]
+          .col-4
+            %input{:type=>"radio", :name=>"main", :value=>"#{md[:id]}"}
+
+    - if @data[:menu_info][:drinks].any?
+      %h5 Drinks
+      .row.drinks
+        .col-4 Name
+        .col-4 Price
+        .col-4 Choose
+        - for drinks in @data[:menu_info][:drinks]
+          .col-4
+            =drinks[:name]
+          .col-4
+            =drinks[:price]
+          .col-4
+            %input{:type=>"radio", :name=>"drink", :value=>"#{drinks[:id]}"}
+    - if @data[:order_info][:items].empty?
+      %input#submit.btn.btn-success{:type=>"Submit", :value=>"Make Order", :onclick=>"makeOrder()"}
   - else
     Menu for this day is unavailable
