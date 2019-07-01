@@ -5,13 +5,16 @@
       %ul.list-group.list-group-flush Soups
       - for soup in @data[:menu_info][:soups]
         %li.list-group-item #{soup[:name]} #{soup[:price]}
+        %input{:type=>"checkbox"}
     - if @data[:menu_info][:main_dishes].any?
       %ul.list-group.list-group-flush Main dishes
       - for md in @data[:menu_info][:main_dishes]
         %li.list-group-item #{md[:name]} #{md[:price]}
+        %input{:type=>"checkbox"}
     - if @data[:menu_info][:drinks].any?
       %ul.list-group.list-group-flush Drinks
       - for drink in @data[:menu_info][:drinks]
-        %li.list-group-item #{drink[:name]} #{drink[:price]}
+        %li.list-group-item #{drink[:name]} #{drink[:price]} %input{type=>checkbox}
+
   - else
     Menu for this day is unavailable
