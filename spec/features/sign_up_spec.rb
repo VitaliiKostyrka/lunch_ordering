@@ -20,10 +20,10 @@ RSpec.feature 'Sign up', type: :feature, js: true do
     fill_in 'Name', with: user.name
     fill_in 'Email', with: user.email
     fill_in 'user_password', with: user.password
-    fill_in 'user_password_confirmation', with: "NotPreviousPassword"
+    fill_in 'user_password_confirmation', with: 'NotPreviousPassword'
     click_button 'Sign up'
-    expect(page).to_not have_content("Dashboard")
-    expect(page).to have_content("Password confirmation doesn't match Password")
+    expect(page).to_not have_content('Dashboard')
+    expect(page).to have_content('Password confirmation doesn\'t match Password')
   end
 
   it 'sign up miss name issue' do
@@ -33,7 +33,7 @@ RSpec.feature 'Sign up', type: :feature, js: true do
     fill_in 'user_password', with: user.password
     fill_in 'user_password_confirmation', with: user.password
     click_button 'Sign up'
-    expect(page).to_not have_content("Dashboard")
-    expect(page).to have_content("Name can't be blank")
+    expect(page).to_not have_content('Dashboard')
+    expect(page).to have_content('Name can\'t be blank')
   end
 end

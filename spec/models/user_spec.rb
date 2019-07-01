@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.build(:user) }
-  let(:user_without_name) { FactoryBot.build(:user, name:"") }
+  let(:user_without_name) { FactoryBot.build(:user, name: '') }
 
   it 'valid user' do
     expect(user).to be_valid
