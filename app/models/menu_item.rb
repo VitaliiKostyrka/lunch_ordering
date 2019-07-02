@@ -16,15 +16,15 @@ class MenuItem < ApplicationRecord
   end
 
   def self.main_dishes(date)
-    MenuItem.main_dish_at_date(date).map { |h| h.course.as_json }
+    MenuItem.main_dish_at_date(date).map { |h| h.course.course_to_hash }
   end
 
   def self.soups(date)
-    MenuItem.soup_at_date(date).map { |h| h.course.as_json }
+    MenuItem.soup_at_date(date).map { |h| h.course.course_to_hash }
   end
 
   def self.drinks(date)
-    MenuItem.drink_at_date(date).map { |h| h.course.as_json }
+    MenuItem.drink_at_date(date).map { |h| h.course.course_to_hash }
   end
 
   def self.check_kind_of_order_item(params)

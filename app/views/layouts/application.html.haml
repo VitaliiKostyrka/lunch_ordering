@@ -20,6 +20,8 @@
         %form.form-inline
           %a.navbar-brand{href: root_path} Lunch Ordering
           = link_to('Edit', edit_user_path(current_user), class: "btn btn-outline-success")
+          - if current_user.admin?
+            = link_to('Lunch Admin', lunch_admin_index_path, class: "btn btn-outline-success")
           = link_to('Logout', destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-secondary")
     - if notice
       %p.alert.alert-success= notice

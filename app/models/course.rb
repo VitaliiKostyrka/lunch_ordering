@@ -3,7 +3,7 @@ class Course < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   enum kind: %i[main_dish soup drink]
 
-  def as_json
+  def course_to_hash
     {
       id: id,
       price: price,
