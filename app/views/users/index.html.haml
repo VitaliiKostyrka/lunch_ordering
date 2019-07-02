@@ -1,6 +1,7 @@
 - if @success_message
   %p.alert.alert-success= @success_message
-%h2 Dashboard #{@data[:date]}
+%h2 Dashboard
+%span#date #{@data[:date]}
 .row
   .col-9
     #calendar
