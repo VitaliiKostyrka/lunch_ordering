@@ -26,4 +26,13 @@ class OrderItem < ApplicationRecord
     end
     list
   end
+
+  def self.create_order(params, user)
+    date = params[:date]
+    params.delete(:date)
+    params.each do |_, val|
+      return false unless OrderItem.create(user: user, menu_item: MenuItem.course_and_date(val.to_i, Date.parse(date)))
+    end
+    true
+  end
 end
