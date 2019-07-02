@@ -1,6 +1,6 @@
 class MenuItem < ApplicationRecord
   has_many :orders
-  validates :date, :name, :price, :kind, presence: true
+  validates :name, :price, :kind, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
   scope :kind_and_date, ->(kind, date) { MenuItem.where(date: date).where(kind: kind) }
   enum kind: %i[main_dish soup drink]
