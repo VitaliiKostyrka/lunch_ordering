@@ -1,6 +1,6 @@
-class OrderItemsController < ApplicationController
+class OrdersController < ApplicationController
   def create
-    if MenuItem.check_kind_of_order_item(order_params) && OrderItem.create_order(order_params, current_user)
+    if MenuItem.check_kind_of_order_item(order_params) && Order.create_order(order_params, current_user)
       redirect_to request.referrer, notice: 'Your order successful created'
     else
       redirect_to root_path, alert: 'Your order not created'

@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   before_save :check_to_make_admin
-  has_many :order_items
+  has_many :orders
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, :email, :encrypted_password, presence: true
@@ -11,8 +11,8 @@ class User < ApplicationRecord
     date = Date.parse(datestr)
     {
       date: date,
-      order_info: OrderItem.order_data(self, date),
-      menu_info: MenuItem.menu_data(date)
+      order_info: Order.order_data_to_dashboard(self, date),
+      menu_info: MenuItem.menu_data_to_dashboard(date)
     }
   end
 
