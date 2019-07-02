@@ -1,6 +1,29 @@
 language: ruby
+
 rvm:
   - 2.5.1
+
+sudo: required
+
+env:
+  - DB=pgsql
+
 services:
   - postgresql
-script: bundle exec rake spec
+  - xvfb
+
+addons:
+  firefox: "67.0.4"
+
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - xvfb-run bundle exec rake
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database lunch_ordering_test;' -U postgres
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+  - tar -xvzf geckodriver*
+  - chmod +x geckodriver
+  - sudo mv geckodriver /usr/local/bin/
