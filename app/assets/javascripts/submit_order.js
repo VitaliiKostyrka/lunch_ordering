@@ -1,8 +1,10 @@
 function makeOrder() {
-  let order = {}
+  let order = {};
   if (document.querySelector('input[name="soup"]:checked')) order.soup = document.querySelector('input[name="soup"]:checked').value;
   if (document.querySelector('input[name="main"]:checked')) order.main = document.querySelector('input[name="main"]:checked').value;
   if (document.querySelector('input[name="drink"]:checked')) order.drink = document.querySelector('input[name="drink"]:checked').value;
+  order.date = document.getElementById("date").innerText;
+  debugger;
   $.ajax({
     type: "POST",
     url: "/order_items",

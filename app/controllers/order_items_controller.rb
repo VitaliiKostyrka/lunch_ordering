@@ -1,12 +1,7 @@
 class OrderItemsController < ApplicationController
   def create
-    if OrderItem.check_kind_of_order_item(order_params)
-      order_params.each do |_, val|
-        unless OrderItem.create(user: current_user, menu_item_id: val.to_i)
-          redirect_to root_path, alert: 'Your order not created'
-        end
-      end
-      redirect_to root_path, notice: 'Your order successful created'
+    if MenuItem.check_kind_of_order_item(order_params) && OrderItem.create_order(order_params, current_user)
+      redirect_to request.referrer, notice: 'Your order successful created'
     else
       redirect_to root_path, alert: 'Your order not created'
     end
@@ -15,6 +10,6 @@ class OrderItemsController < ApplicationController
   protected
 
   def order_params
-    params.require(:order).permit(:soup, :drink, :main)
+    params.require(:order).permit(:soup, :drink, :main, :date)
   end
 end
