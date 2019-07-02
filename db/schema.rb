@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_124807) do
+ActiveRecord::Schema.define(version: 2019_07_02_164301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "courses", force: :cascade do |t|
+  create_table "menu_items", force: :cascade do |t|
     t.string "name"
+    t.date "date"
     t.decimal "price", precision: 5, scale: 2
     t.integer "kind"
     t.string "image_url"
@@ -24,21 +25,13 @@ ActiveRecord::Schema.define(version: 2019_07_02_124807) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "menu_items", force: :cascade do |t|
-    t.date "date"
-    t.bigint "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_menu_items_on_course_id"
-  end
-
-  create_table "order_items", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.bigint "menu_item_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id"
-    t.index ["user_id"], name: "index_order_items_on_user_id"
+    t.index ["menu_item_id"], name: "index_orders_on_menu_item_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
