@@ -27,7 +27,7 @@ RSpec.feature 'Admin page', type: :feature, js: true do
     find('#menu-item-create').click
     expect(page).to have_content('Your menu item not created')
 
-    fill_in 'Menu item name', with: 'juice'
+    fill_in 'Name', with: 'juice'
     fill_in 'Price', with: 23.5
     find('#menu_item_kind_drink').click
     find('#menu-item-create').click

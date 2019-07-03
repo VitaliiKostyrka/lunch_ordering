@@ -6,8 +6,9 @@
       #{user[:name]}  : #{user[:email]}
   %h5 Create Menu Item For Today
   = simple_form_for(:menu_item, url: menu_items_path) do |f|
-    = f.input :name, label: 'Menu item name'
+    = f.input :name, label: 'Name'
     = f.input :price
+    = f.input :image_url, label: "Image", as: :file
     = f.input :kind, as: :radio_buttons, collection: MenuItem.kinds.keys, wrapper: :vertical_collection_inline
     = f.button :submit, class: 'btn-success', value: "Create", id: 'menu-item-create'
   %h5 Manage Orders
