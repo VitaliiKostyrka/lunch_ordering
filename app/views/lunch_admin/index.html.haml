@@ -26,3 +26,20 @@
         %p Total sum all orders #{@admin_data[:orders].map {|uorders| uorders[uorders.keys.first][:total_price]}.sum}
       - else
         %p not one user made an order on this day
+
+:javascript
+  var calendarEl = document.getElementById('calendar-admin');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    plugins: [ 'dayGrid', 'interaction' ],
+    defaultView: 'dayGridMonth',
+    validRange: {
+      end: new Date() // hidden future days
+    },
+    selectable: true,
+    dateClick: function(info) {
+      window.location.href = "/lunch_admin/?date="+ info.dateStr
+    }
+  });
+
+  calendar.render();
