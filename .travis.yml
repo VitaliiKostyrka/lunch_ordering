@@ -15,11 +15,6 @@ services:
 addons:
   firefox: "67.0.4"
 
-script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - xvfb-run bundle exec rake
-
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database lunch_ordering_test;' -U postgres
@@ -27,3 +22,8 @@ before_script:
   - tar -xvzf geckodriver*
   - chmod +x geckodriver
   - sudo mv geckodriver /usr/local/bin/
+
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  - xvfb-run bundle exec rake
