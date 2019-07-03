@@ -20,9 +20,10 @@ class User < ApplicationRecord
     { email: email, name: name }
   end
 
-  def self.admin_dashboard_data
+  def self.admin_dashboard_data(date)
     {
-      users: User.all.map(&:user_to_hash)
+      users: User.all.map(&:user_to_hash),
+      orders: Order.all_orders_for_date(date)
     }
   end
 

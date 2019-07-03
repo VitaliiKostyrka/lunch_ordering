@@ -1,1 +1,28 @@
-%h4 Admin page #{@admin_data[:users]}
+%h3 Lunch Admin
+%ul.list-group
+  %h5 User List
+  - for user in @admin_data[:users]
+    %li.list-group-item
+      #{user[:name]}  : #{user[:email]}
+  %h5 Create Menu Item For Today
+  = simple_form_for(:menu_item, url: menu_items_path) do |f|
+    = f.input :name, label: 'Menu item name'
+    = f.input :price
+    = f.input :kind, as: :radio_buttons, collection: MenuItem.kinds.keys, wrapper: :vertical_collection_inline
+    = f.button :submit, class: 'btn-success', value: "Create", id: 'menu-item-create'
+  %h5 Manage Orders
+  .row
+    .col-9
+      #calendar-admin
+    .col-3
+      %h5 Order List
+      - if @admin_data[:orders].any?
+        - for user_orders in @admin_data[:orders]
+          %h6 #{user_orders.keys.first}
+          %ul.list-group.list-group-flush
+          - for menu_item in user_orders[user_orders.keys.first][:items]
+            %li.list-group-item #{menu_item[:type]} #{menu_item[:name]} #{menu_item[:price]}
+          %li.list-group-item total price: #{user_orders[user_orders.keys.first][:total_price]}
+        %p Total sum all orders #{@admin_data[:orders].map {|uorders| uorders[uorders.keys.first][:total_price]}.sum}
+      - else
+        %p not one user made an order on this day

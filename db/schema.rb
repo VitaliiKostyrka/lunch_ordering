@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_02_164301) do
+ActiveRecord::Schema.define(version: 2019_07_02_184910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
-    t.date "date"
+    t.date "date", default: "2019-07-03"
     t.decimal "price", precision: 5, scale: 2
     t.integer "kind"
     t.string "image_url"
