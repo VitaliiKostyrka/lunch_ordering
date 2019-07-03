@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path, notice: 'Your profile updated'
     else
-      @error = @user.errors.full_messages
+      redirect_to edit_user_path, alert: 'Your profile not updated'
     end
   end
 
