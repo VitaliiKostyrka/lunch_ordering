@@ -1,4 +1,5 @@
 class MenuItem < ApplicationRecord
+  mount_uploader :menu_item, MenuItemUploader
   has_many :orders
   validates :name, :price, :kind, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
