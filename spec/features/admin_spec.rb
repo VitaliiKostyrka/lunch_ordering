@@ -7,7 +7,7 @@ RSpec.feature 'Admin page', type: :feature, js: true do
   it 'have permission to admin' do
     sign_in admin
     visit lunch_admin_index_path
-    expect(page).to have_content('Admin page')
+    expect(page).to have_content('Lunch Ordering')
   end
 
   it 'have not permission to admin' do

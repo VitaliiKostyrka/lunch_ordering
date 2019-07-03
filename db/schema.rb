@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_07_02_184910) do
 
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
-    t.date "date", default: "2019-07-02"
+    t.date "date", default: "2019-07-03"
     t.decimal "price", precision: 5, scale: 2
     t.integer "kind"
     t.string "image_url"
