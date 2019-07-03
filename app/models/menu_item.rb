@@ -1,10 +1,15 @@
 class MenuItem < ApplicationRecord
-  mount_uploader :menu_item, MenuItemUploader
   has_many :orders
   validates :name, :price, :kind, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
+  before_save :set_today_date_for_menu_item
   scope :kind_and_date, ->(kind, date) { MenuItem.where(date: date).where(kind: kind) }
   enum kind: %i[main_dish soup drink]
+  mount_uploader :image_url, MenuItemUploader
+
+  def set_today_date_for_menu_item
+    self.date = Date.today
+  end
 
   def menu_item_to_hash
     {

@@ -4,43 +4,55 @@
     - if @data[:menu_info][:soups].any?
       %h5 Soups
       .row.soups
-        .col-4 Name
-        .col-4 Price
-        .col-4 Choose
+        .col-3 Name
+        .col-3 Image
+        .col-3 Price
+        .col-3 Choose
         - for soup in @data[:menu_info][:soups]
-          %label.col-4{:for=>"menu_item#{soup[:id]}"}
+          %label.col-3{:for=>"menu_item#{soup[:id]}"}
             =soup[:name]
-          .col-4
+          .col-3
+            - if !soup[:image_url].blank?
+              = image_tag soup[:image_url].to_s, size: "100x100"
+          .col-3
             =soup[:price]
-          .col-4
+          .col-3
             %input{:type=>"radio", :name=>"soup", :value=>"#{soup[:id]}", id: "menu_item#{soup[:id]}"}
 
     - if @data[:menu_info][:main_dishes].any?
       %h5 Main dishes
       .row.main-dishes
-        .col-4 Name
-        .col-4 Price
-        .col-4 Choose
+        .col-3 Name
+        .col-3 Image
+        .col-3 Price
+        .col-3 Choose
         - for md in @data[:menu_info][:main_dishes]
-          %label.col-4{:for=>"menu_item#{md[:id]}"}
+          %label.col-3{:for=>"menu_item#{md[:id]}"}
             =md[:name]
-          .col-4
+          .col-3
+            - if !md[:image_url].blank?
+              = image_tag md[:image_url].to_s, size: "100x100"
+          .col-3
             =md[:price]
-          .col-4
+          .col-3
             %input{:type=>"radio", :name=>"main", :value=>"#{md[:id]}", id: "menu_item#{md[:id]}"}
 
     - if @data[:menu_info][:drinks].any?
       %h5 Drinks
       .row.drinks
-        .col-4 Name
-        .col-4 Price
-        .col-4 Choose
+        .col-3 Name
+        .col-3 Image
+        .col-3 Price
+        .col-3 Choose
         - for drink in @data[:menu_info][:drinks]
-          %label.col-4{:for=>"menu_item#{drink[:id]}"}
+          %label.col-3{:for=>"menu_item#{drink[:id]}"}
             =drink[:name]
-          .col-4
+          .col-3
+            - if !drink[:image_url].blank?
+              = image_tag drink[:image_url].to_s, size: "100x100"
+          .col-3
             =drink[:price]
-          .col-4
+          .col-3
             %input{:type=>"radio", :name=>"drink", :value=>"#{drink[:id]}", id: "menu_item#{drink[:id]}"}
     - if @data[:order_info][:items].empty?
       %input#submit.btn.btn-success{:type=>"Submit", :value=>"Make Order", :onclick=>"makeOrder()"}
