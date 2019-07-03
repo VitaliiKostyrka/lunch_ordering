@@ -4,7 +4,7 @@ RSpec.feature 'Edit User', type: :feature, js: true do
   let!(:user) { FactoryBot.create(:user) }
 
   it 'success edit user' do
-    sign_in user
+    sign_in_as user
     new_email = 'new@email.com'
 
     visit edit_user_path(user)
@@ -22,7 +22,7 @@ RSpec.feature 'Edit User', type: :feature, js: true do
   end
 
   it 'failed edit user' do
-    sign_in(user)
+    sign_in_as(user)
 
     visit edit_user_path(user)
     expect(find('input#user_email').value).to eq(user.email)

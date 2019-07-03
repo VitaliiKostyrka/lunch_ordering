@@ -7,7 +7,7 @@ RSpec.feature 'Make order', type: :feature, js: true do
   let!(:menu_item_main_dish) { FactoryBot.create(:menu_item) }
 
   it 'make order with 3 items' do
-    sign_in user
+    sign_in_as user
     total_price = menu_item_soup.price + menu_item_drink.price + menu_item_main_dish.price
     find("#menu_item#{menu_item_soup.id}").click
     find("#menu_item#{menu_item_drink.id}").click
@@ -18,7 +18,7 @@ RSpec.feature 'Make order', type: :feature, js: true do
   end
 
   it 'make order with 1 items' do
-    sign_in user
+    sign_in_as user
     find("#menu_item#{menu_item_soup.id}").click
 
     find('#submit').click
