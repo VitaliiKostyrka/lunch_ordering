@@ -1,10 +1,14 @@
 class MenuItemsController < ApplicationController
   def create
-    @menu_item = MenuItem.new(menu_items_params)
-    if @menu_item.save
-      redirect_to request.referrer, notice: 'Your menu item successful created'
+    if current_user.admin?
+      @menu_item = MenuItem.new(menu_items_params)
+      if @menu_item.save
+        redirect_to lunch_admin_index_path, notice: 'Your menu item successful created'
+      else
+        redirect_to lunch_admin_index_path, alert: 'Your menu item not created'
+      end
     else
-      redirect_to request.referrer, alert: 'Your menu item not created'
+      redirect_to root_path, alert: 'Your menu item not created'
     end
   end
 

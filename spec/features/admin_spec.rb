@@ -6,7 +6,7 @@ RSpec.feature 'Admin page', type: :feature, js: true do
   let!(:order_item) { FactoryBot.create(:order, user: user) }
 
   it 'have permission to admin' do
-    sign_in admin
+    sign_in_as admin
     visit lunch_admin_index_path
     expect(page).to have_content('Lunch Ordering')
     expect(page).to have_content(user.name)
@@ -21,7 +21,7 @@ RSpec.feature 'Admin page', type: :feature, js: true do
   end
 
   it 'create menu item for today' do
-    sign_in admin
+    sign_in_as admin
     visit lunch_admin_index_path
     fill_in 'Price', with: 23.5
     find('#menu-item-create').click
@@ -35,7 +35,7 @@ RSpec.feature 'Admin page', type: :feature, js: true do
   end
 
   it 'have not permission to admin' do
-    sign_in user
+    sign_in_as user
     visit lunch_admin_index_path
     expect(page).to have_content('The page you were looking for doesn\'t exist')
   end
