@@ -33,6 +33,6 @@ RSpec.feature 'Edit User', type: :feature, js: true do
     click_button 'Save User'
 
     expect(page).to_not have_content('Dashboard')
-    expect(page).to_not have_content('Your profile updated')
+    expect(page).to have_content('Your profile not updated')
   end
 end
