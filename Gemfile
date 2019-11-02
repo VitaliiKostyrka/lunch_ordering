@@ -7,7 +7,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '4.3.1'
 gem 'carrierwave', '1.3.1'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise', '4.6.2'
+gem 'devise', '4.7.1'
 gem 'haml-rails', '~> 2.0'
 gem 'jbuilder', '~> 2.5'
 gem 'pg', '>= 0.18', '< 2.0'
